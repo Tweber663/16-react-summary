@@ -12,7 +12,7 @@ const NavBar = () => {
            <Navbar.Toggle />
             <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-               <a className={styles.home} href="/">Home</a>
+                <a className={styles.home} href="/">Home</a>
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>

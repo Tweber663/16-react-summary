@@ -1,4 +1,5 @@
 import NavBar from "../common/NavBar"
+import Tables from "../views/Tables"
 
 const Home = () => {
 
@@ -6,7 +7,7 @@ const Home = () => {
        <div>
         <NavBar/>
         <h1>All Tables</h1>
-
+        <Tables/>
        </div> 
     )
 } 
