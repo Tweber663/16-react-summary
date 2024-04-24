@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import { useDispatch } from "react-redux";
+import { gettingTables } from "./redux/tableRedux";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { fetchingTables } from "./redux/tableRedux";
+import { Routes, Route } from "react-router-dom";
+import { Container } from "react-bootstrap";
+import Home from "./components/pages/Home";
 
-function App() {
+const App = ()  => {
+
+  const [fetchFinished, setfetchFinihsed] = useState(false); //used for conditioanl 🔸
+
+  const disptach = useDispatch();
+
+  useEffect(() => {
+    disptach(fetchingTables()); //Sends dispatch as argu to 'fetchingTables' via 'thunk' middle wear (return)
+    setfetchFinihsed(true) 
+  },[disptach]); //Is triggered only once + stops errors
+
+  const tables = useSelector(state => state);
+
+  // hello world
+  // <button>Fetching</button>
+  // {fetchFinished && (  //conditional 🔸
+  //   <ul>
+  //     {tables.tables.tables.map((table) => (
+  //       <li key={table.id}>{table.status}</li>
+  //     ))}
+  //   </ul>
+  // )}
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container>
+     <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/tables/:id" />
+     </Routes>
+    </Container>
+  )
 }
+
+
 
 export default App;
