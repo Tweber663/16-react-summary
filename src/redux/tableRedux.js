@@ -1,5 +1,4 @@
 //**Selector 
-
 //Respo for fetching the info + passing the info to action creator
 export const fetchingTables = () => {
     return(disptach) => {  
@@ -10,13 +9,12 @@ export const fetchingTables = () => {
     }
 }
 
+//Returns correct table based on url id
 export const selectedTable = ({id, state}) => state.tables.tables.filter((table) => id === table.id);
 
 
 //**action creators 
-export const gettingTables = (payload) => ({type: 'GETTING_INFO', payload})
-
-
+export const gettingTables = (payload) => ({type: 'GETTING_INFO', payload});
 
 //**Subreducers
 
@@ -26,6 +24,9 @@ const tablesReducer = (statePart = [], action) => {
         return console.log('');
         case "GETTING_INFO":
             return {...statePart, tables: action.payload};
+        case "CASHED_DATA":
+            console.log(action);
+            break;
         default:
             return statePart
     }

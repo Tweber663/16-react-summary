@@ -1,25 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from './TableForm.module.scss'
 import {Button} from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectedTable } from "../../redux/tableRedux";
+import { useDispatch } from "react-redux";
+import { fetchingTables } from "../../redux/tableRedux";
 
 const TableForm = () => {
+
+    const disptach = useDispatch();
+
+    const [fetching, setFetching] = useState(false);
+
+    useEffect(() => {
+        disptach(fetchingTables());
+    }, [disptach]) //Stops from erros / get's triggered once
     
     //Stores form submit data
     const [formInfo, setFormInfo] = useState(''); 
-
+    //FORM 'select' default value
     const {id} = useParams();
 
     const table = useSelector(state => selectedTable({state, id}));
-    const {bill, maxPeopleAmount, peopleAmount, status} = table[0];
-    console.log(bill)
+        useEffect(() => {
+            setFetching(true);
+        }, [table])
 
-    console.log(id);
+
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(e);
         setFormInfo({
             status: e.target[0].value
         })
@@ -28,7 +38,7 @@ const TableForm = () => {
     return (
         <form onSubmit={submitHandler}>
 
-           <div className={styles.formType}>
+           {/* <div className={styles.formType}>
                 <label className={styles.label1}>Status</label>
                 <select value={status} class={`form-select ${styles.select}`}>
                     <option value='Free'>Free</option>
@@ -47,7 +57,7 @@ const TableForm = () => {
                  <label className={styles.label3}>Bill</label>
                  <input value={bill} className={`form-control ${styles.input}`} type='text'></input>
             </div>
-            <Button variant="primary">Submit</Button>
+            <Button variant="primary">Submit</Button> */}
         </form>
     )
 }
