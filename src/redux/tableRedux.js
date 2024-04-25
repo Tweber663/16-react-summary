@@ -10,6 +10,8 @@ export const fetchingTables = () => {
     }
 }
 
+export const selectedTable = ({id, state}) => state.tables.tables.filter((table) => id === table.id);
+
 
 //**action creators 
 export const gettingTables = (payload) => ({type: 'GETTING_INFO', payload})

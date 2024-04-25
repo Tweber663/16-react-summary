@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { fetchingTables } from "../../redux/tableRedux"
 import { useSelector } from "react-redux"
 import Table from "./Table"
+import styles from './Tables.module.scss'
 
 const Tables = () => {
     const disptach = useDispatch();
@@ -15,14 +16,13 @@ const Tables = () => {
     }, [disptach]) //Stops from erros / get's triggered once
       
     const addedTables = useSelector(state => state.tables);
-    console.log(addedTables)
 
     return (
         <div> 
           {tableFetched && (
             <ul>
               {addedTables.tables.map((table) => (
-                <Table key={table.id} status={table.status}/>
+                <Table table={table}/>
               ))}
             </ul>
           )}

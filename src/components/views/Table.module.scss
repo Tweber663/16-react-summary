@@ -1,9 +1,42 @@
-.grid {
-    background-color: blue;
-    color: red;
+
+.col {
+    border-bottom: 1px solid;
+    position: relative;
+    margin-bottom: 35px;
+}
+
+.holder {
+   position: relative;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 60px;
 }
 
 li {
-    border: 2px solid blue;
+    position: relative;
+    list-style-type: none;
+    height: 40px;
 }
 
+button {
+    position: relative;
+}
+.spanOne {
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 15px;
+}
+
+.spanTwo {
+    font-size: 15px
+
+}
+
+@media (min-width:0px) and (max-width:420px) {
+   
+.holder {
+    height: 80px;
+    display: block;
+ }
+}
