@@ -4,7 +4,6 @@ import initialState from './initialState';
 import tablesReducer from './tableRedux';
 
 const reducer = (state, action) => {
-  console.log(action)
     const newState = {
         tables: tablesReducer(state, action),
     }
