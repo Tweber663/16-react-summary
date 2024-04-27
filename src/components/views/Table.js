@@ -18,7 +18,7 @@ const Table = (table) => {
                                 </h2> 
                         </li>
                         <NavLink to={`tables/${id}`}>
-                            <button>ShowMore</button>
+                            <button className="btn btn-primary">ShowMore</button>
                         </NavLink>
                     </div>
                 </Col>

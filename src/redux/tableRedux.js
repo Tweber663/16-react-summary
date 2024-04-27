@@ -1,18 +1,24 @@
-import { useNavigate } from "react-router-dom";
+
+//**actionTypes
+const actionType1 =  (type) => `app/tables/${type}`;
+const GETTING_INFO = actionType1('GETTING_INFO')
+
+const actionType2 =  (type) => `app/tables/${type}`;
+const UPDATING_INFO = actionType1('UPDATING_INFO')
 
 //**Selector 
 //Respo for fetching the info + passing the info to action creator
 export const fetchingTables = () => {
     return(disptach) => {  
-        fetch("http://localhost:3133/tables")
+        fetch("http://localhost:3130/tables")
         .then((raw) => raw.json())
-        .then((tables) => disptach(gettingTables(tables))); // passing info to action creaotr
+        .then((tables) =>  {
+            disptach(gettingTables(tables));   
+        })
+        // passing info to action creaotr
         //We can add 'dispatch' above because it was passed as argu
     }
 }
-//Returns correct table based on url id
-export const selectedTable = ({id, state}) => state.tables.tables.filter((table) => id === table.id);
-
 export const fetchingTablesPOST = (updatedTable) => {
     return (disptach) => {
         const options = {
@@ -22,25 +28,28 @@ export const fetchingTablesPOST = (updatedTable) => {
             }, 
             body: JSON.stringify(updatedTable),
         };
-        fetch(`http://localhost:3133/tables/1`, options)
+        fetch(`http://localhost:3130/tables/${updatedTable.id}`, options)
         .then(() => disptach(updatingTables(updatedTable)));
     }
 }
-
+//Returns correct table based on url id
+export const selectedTable = ({id, state}) => {
+        return state.tables.tables.filter((table) => id === table.id);   
+}
 
 //**action creators 
-export const gettingTables = (payload) => ({type: 'GETTING_INFO', payload});
+export const gettingTables = (payload) => ({type: GETTING_INFO, payload});
+export const updatingTables = (payload) => ({type: UPDATING_INFO, payload});
 
-export const updatingTables = (payload) => ({type: "UPDATING_INFO", payload});
 
 //**Subreducers
 const tablesReducer = (statePart = [], action) => {
     switch (action.type) {
         case "LOADING":
         return console.log('');
-        case "GETTING_INFO":
+        case GETTING_INFO:
             return {...statePart, tables: action.payload};
-        case "UPDATING_INFO":
+        case UPDATING_INFO:
             return {...statePart, tables: action.payload};
         default:
             return statePart

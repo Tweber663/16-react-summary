@@ -6,7 +6,7 @@ const NavBar = () => {
     
     
     return (
-      <Navbar className="bg-body-tertiary">
+      <Navbar className={styles.corners} bg="primary" data-bs-theme="dark">
        <Container>
           <Navbar.Brand>Waiter.app</Navbar.Brand>
            <Navbar.Toggle />
