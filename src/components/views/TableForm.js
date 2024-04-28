@@ -48,7 +48,6 @@ const TableForm = () => {
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
     const submitHandler = (e) => {
-        e.preventDefault();
         disptach(fetchingTablesPOST({
             id, 
             status: e.target.selectStatus.value,
@@ -56,7 +55,7 @@ const TableForm = () => {
             maxPeopleAmount: e.target.maxPeopleAmount.value, 
             bill: e.target.bill.value
         }));
-        navigate("/")
+        navigate('/');
     }
 
 
@@ -78,7 +77,7 @@ const TableForm = () => {
     if( id > 4 || pattern.test(id)) return <Navigate to="/"/>
     if (table.length == 0) return <p>Loading...</p>
     return (
-        <form onSubmit={submitHandler}>
+        <form onSubmit={(e) => submitHandler(e)}>
 
            <div className={styles.formType}>
             <label className={styles.label1}>Status</label>
