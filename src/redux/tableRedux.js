@@ -1,16 +1,18 @@
+import { API_URL } from "../config";
 
+console.log(API_URL)
 //**actionTypes
 const actionType1 =  (type) => `app/tables/${type}`;
 const GETTING_INFO = actionType1('GETTING_INFO')
 
 const actionType2 =  (type) => `app/tables/${type}`;
-const UPDATING_INFO = actionType1('UPDATING_INFO')
+const UPDATING_INFO = actionType2('UPDATING_INFO')
 
 //**Selector 
 //Respo for fetching the info + passing the info to action creator
 export const fetchingTables = () => {
     return(disptach) => {  
-        fetch("http://localhost:3130/tables")
+        fetch(`${API_URL}/tables`)
         .then((raw) => raw.json())
         .then((tables) =>  {
             disptach(gettingTables(tables));   
@@ -28,7 +30,7 @@ export const fetchingTablesPOST = (updatedTable) => {
             }, 
             body: JSON.stringify(updatedTable),
         };
-        fetch(`http://localhost:3130/tables/${updatedTable.id}`, options)
+        fetch(`${API_URL}/tables/${updatedTable.id}`, options)
         .then(() => disptach(updatingTables(updatedTable)));
     }
 }
