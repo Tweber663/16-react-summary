@@ -52,7 +52,8 @@ const tablesReducer = (statePart = [], action) => {
         case GETTING_INFO:
             return {...statePart, tables: action.payload};
         case UPDATING_INFO:
-            return {...statePart, tables: action.payload};
+            return statePart.map(table =>
+                table.id === action.payload.id ? { ...table, ...action.payload } : table);
         default:
             return statePart
     }

@@ -48,6 +48,8 @@ const TableForm = () => {
         if (Number(pepAmount) > Number(maxPepAmount)) setPepAmount(maxPepAmount);
     }
     const submitHandler = (e) => {
+        e.preventDefault();
+        console.log(e)
         disptach(fetchingTablesPOST({
             id, 
             status: e.target.selectStatus.value,
@@ -55,13 +57,14 @@ const TableForm = () => {
             maxPeopleAmount: e.target.maxPeopleAmount.value, 
             bill: e.target.bill.value
         }));
-        navigate('/');
+        navigate("/")
     }
 
 
     const [changeStatus, setChangeStatus] = useState(false);
     const [currentStatus, setCurrentStauts] = useState(status);
     const changeHandler = (e) => {
+        e.preventDefault();
         if (e.target.value === 'Busy') {
             setChangeStatus(true)
         } else {

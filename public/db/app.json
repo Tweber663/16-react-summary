@@ -9,9 +9,9 @@
     },
     {
       "id": "2",
-      "status": "Reserved",
-      "peopleAmount": "",
-      "maxPeopleAmount": "",
+      "status": "Cleaning",
+      "peopleAmount": "1",
+      "maxPeopleAmount": "1",
       "bill": "0"
     },
     {
@@ -23,7 +23,7 @@
     },
     {
       "id": "4",
-      "status": "Cleaning",
+      "status": "Free",
       "peopleAmount": "02",
       "maxPeopleAmount": "3",
       "bill": "0"
