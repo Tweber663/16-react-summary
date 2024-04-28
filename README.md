@@ -1,5 +1,4 @@
-https://16-react-summary-tweber1995.replit.app/tables/1
-
+https://16-react-summary-1-tweber1995.replit.app/
 
 # Getting Started with Create React App
 
